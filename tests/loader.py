@@ -1,8 +1,9 @@
+import pickle
 import numpy as np
 from typing import Dict
 from os import path
 
-dataset_path = path.abspath(path.join(path.dirname(__file__), './data'))
+data_path = path.abspath(path.join(path.dirname(__file__), './data'))
 number_of_training_images = 60000
 number_of_test_images = 10000
 image_dimension = (1, 28, 28)
@@ -41,25 +42,32 @@ def _flatten(image: np.array) -> np.array:
 
 def load_dataset(**kwarg) -> Dict[str, np.array]:
     dataset = {}
-    dataset['train_image'] = _load_image(
-        '/'.join([dataset_path, 'train-images.idx3-ubyte']))
-    dataset['train_label'] = _load_label(
-        '/'.join([dataset_path, 'train-labels.idx1-ubyte']))
-    dataset['test_image'] = _load_image(
-        '/'.join([dataset_path, 't10k-images.idx3-ubyte']))
-    dataset['test_label'] = _load_label(
-        '/'.join([dataset_path, 't10k-labels.idx1-ubyte']))
+    dataset['train_images'] = _load_image(
+        '/'.join([data_path, 'train-images.idx3-ubyte']))
+    dataset['train_labels'] = _load_label(
+        '/'.join([data_path, 'train-labels.idx1-ubyte']))
+    dataset['test_images'] = _load_image(
+        '/'.join([data_path, 't10k-images.idx3-ubyte']))
+    dataset['test_labels'] = _load_label(
+        '/'.join([data_path, 't10k-labels.idx1-ubyte']))
 
     if kwarg.get('normalize', False):
-        dataset['train_image'] = _normalize(dataset['train_image'])
-        dataset['test_image'] = _normalize(dataset['test_image'])
+        dataset['train_images'] = _normalize(dataset['train_images'])
+        dataset['test_images'] = _normalize(dataset['test_images'])
 
     if kwarg.get('one_hot_label', False):
-        dataset['train_label'] = _one_hot_label(dataset['train_label'])
-        dataset['test_label'] = _one_hot_label(dataset['test_label'])
+        dataset['train_labels'] = _one_hot_label(dataset['train_labels'])
+        dataset['test_labels'] = _one_hot_label(dataset['test_labels'])
 
     if not kwarg.get('flatten', True):
-        dataset['train_image'] = _flatten(dataset['train_image'])
-        dataset['test_image'] = _flatten(dataset['test_image'])
+        dataset['train_images'] = _flatten(dataset['train_images'])
+        dataset['test_images'] = _flatten(dataset['test_images'])
 
     return dataset
+
+
+def load_parameters() -> Dict[str, np.array]:
+    with open('/'.join([data_path, 'mlp_parameters.pkl']), 'rb') as f:
+        params = pickle.load(f)
+
+    return params
