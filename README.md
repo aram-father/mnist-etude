@@ -4,6 +4,13 @@ Implement MNIST data set classification using deep learning while minimizing 3rd
 - **Author:** Wonseok Lee (aram_father@naver.com)
 - **Last update:** 2022-01-11
 
+This repository is under construction
+
+## activity log
+
+- `2022-01-12`: Implement MNIST dataset prediction using MLP with pre-trained parameters
+
+
 ## What does this repository do?
 
 This repository implements a pacakge classfyiing MNIST data set using deep learning.
