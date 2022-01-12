@@ -18,5 +18,6 @@ setup(
     license=license,
     packages=find_packages(exclude=('tests', 'docs')),
     install_requires=['numpy', 'pickle', 'matplotlib'],
-    python_requires='>=3'
+    python_requires='>=3',
+    include_package_data=True
 )
