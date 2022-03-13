@@ -1,4 +1,3 @@
-from types import new_class
 import numpy as np
 from PIL import Image
 from context import loader, mnistetude
@@ -9,10 +8,7 @@ if __name__ == '__main__':
 
     network = mnistetude.Mlp(parameters)
 
-    acc = 0
-    for image, label in zip(dataset['test_images'], dataset['test_labels']):
-        prediction = np.argmax(network.predict(image))
-        if prediction == label:
-            acc += 1
+    batch_predictions = np.argmax(network.predict(dataset['test_images']), axis=1)
+    acc = np.sum(batch_predictions == dataset['test_labels'])
 
     print(f'Accuracy: {float(100 * acc) / loader.number_of_test_images} %')
