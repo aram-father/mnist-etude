@@ -36,7 +36,7 @@ def _one_hot_label(label: np.array) -> np.array:
     return one_hot
 
 
-def _flatten(image: np.array) -> np.array:
+def _deflatten(image: np.array) -> np.array:
     return np.reshape(-1, image_dimension)
 
 
@@ -60,8 +60,8 @@ def load_dataset(**kwarg) -> Dict[str, np.array]:
         dataset['test_labels'] = _one_hot_label(dataset['test_labels'])
 
     if not kwarg.get('flatten', True):
-        dataset['train_images'] = _flatten(dataset['train_images'])
-        dataset['test_images'] = _flatten(dataset['test_images'])
+        dataset['train_images'] = _deflatten(dataset['train_images'])
+        dataset['test_images'] = _deflatten(dataset['test_images'])
 
     return dataset
 
