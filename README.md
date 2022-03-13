@@ -8,7 +8,7 @@ This repository is under construction
 
 ## activity log
 
-- `2022-01-12`: Implement MNIST dataset prediction using MLP with pre-trained parameters
+- `2022-01-12`: Implement MNIST dataset prediction using MLP(Multi-Layer Perceptron) with pre-trained parameters
 
 
 ## What does this repository do?
