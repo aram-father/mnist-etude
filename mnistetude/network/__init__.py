@@ -1,1 +1,1 @@
-from .mlp import *
+from .multi_layer_perceptron import *
