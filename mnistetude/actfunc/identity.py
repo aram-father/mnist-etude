@@ -1,5 +1,10 @@
 import numpy as np
+from . import iactfunc
 
 
-def identity(x: np.array) -> np.array:
-    return x
+class Identity(iactfunc.IActFunc):
+    def __init__(self):
+        pass
+
+    def activate(self, x: np.array) -> np.array:
+        return x
