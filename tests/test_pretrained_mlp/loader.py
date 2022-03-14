@@ -3,7 +3,8 @@ import numpy as np
 from typing import Dict
 from os import path
 
-data_path = path.abspath(path.join(path.dirname(__file__), './data'))
+data_path = path.abspath(path.join(path.dirname(__file__), '../data'))
+parameter_path = path.abspath(path.join(path.dirname(__file__), './parameters'))
 number_of_training_images = 60000
 number_of_test_images = 10000
 image_dimension = (1, 28, 28)
@@ -67,7 +68,7 @@ def load_dataset(**kwarg) -> Dict[str, np.array]:
 
 
 def load_parameters() -> Dict[str, np.array]:
-    with open('/'.join([data_path, 'mlp_parameters.pkl']), 'rb') as f:
+    with open('/'.join([parameter_path, 'mlp_parameters.pkl']), 'rb') as f:
         params = pickle.load(f)
 
     return params
