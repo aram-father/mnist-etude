@@ -1,1 +1,2 @@
-from .perceptron import Perceptron
+from .perceptron import *
+from .ilayer import *
