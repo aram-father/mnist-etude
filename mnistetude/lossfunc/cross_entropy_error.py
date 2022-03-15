@@ -13,5 +13,5 @@ class CrossEntropyError(ilossfunc.ILossFunc):
 
         batch_size = prediction.shape[0]
 
-        eps = np.finfo(float).eps
+        eps = 1e-7
         return -np.sum(label * np.log(prediction + eps)) / batch_size
