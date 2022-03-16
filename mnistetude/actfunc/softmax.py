@@ -7,7 +7,7 @@ class Softmax(iactfunc.IActFunc):
         pass
 
     def activate(self, x: np.array) -> np.array:
-        constant = np.max(x)
+        constant = np.max(x, axis=1).reshape(-1, 1)
         numerator = np.exp(x - constant)
-        denominator = np.sum(numerator)
+        denominator = np.sum(numerator, axis=1).reshape(-1, 1)
         return numerator / denominator
