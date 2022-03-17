@@ -34,3 +34,19 @@ This document summarizes useful tips regarding python(or its internal/external l
 
 - `np.prod(ex_arr, axis=0)` returns the product of array elements over a given axis
 
+### np.random.choice
+
+- `np.random.choice(60000, 3)` returns an array like `[55, 321, 2]`
+
+### np.nditer
+
+- `np.nditer(ex_arr, flags=['multi_index'], op_flags=['readwrite'])` helps iterating an array in a specific order
+- The first option make multi-dimensional index retrievning be possible
+- The second option means we could modify the array we are iterating(if not designated we could not modify it)
+
+```python
+it = np.nditer(x, flags=['multi_index'], op_flags=['readwrite'])
+while not it.finished
+  idx = it.multi_index
+  it = it.iternext()
+```
